@@ -1,0 +1,21 @@
+{
+  "name": "tic-tac-toe-online",
+  "version": "1.0.0",
+  "description": "Online Multiplayer Tic-Tac-Toe with Neon Glassmorphic design and Synthesizer sound effects",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "tictactoe",
+    "multiplayer",
+    "socketio",
+    "websockets"
+  ],
+  "author": "Ankit",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  }
+}
