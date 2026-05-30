@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <button class="space-btn" id="back">Spacekit Games</button>
+    <h1>Tic Tac Toe</h1>
+    
+    <div class="mode-selection">
+      <button class="mode-btn active" id="friendModeBtn">👥 Local</button>
+      <button class="mode-btn" id="aiModeBtn">🤖 vs AI</button>
+      <button class="mode-btn" id="onlineModeBtn">🌐 Online</button>
+    </div>
+
+    <!-- Friends Mode -->
+    <div class="game-section active" id="friendMode">
+      <div class="score">
+        <div class="score-item">Player X: <span id="scoreXFriend">0</span></div>
+        <div class="score-item">Player O: <span id="scoreOFriend">0</span></div>
+        <div class="score-item">Ties: <span id="scoreTieFriend">0</span></div>
+      </div>
+      <div class="status" id="statusFriend">Player X's Turn</div>
+      <div class="board" id="boardFriend">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+      </div>
+      <button class="reset-btn" id="resetBtnFriend">New Game</button>
+    </div>
+
+    <!-- AI Mode -->
+    <div class="game-section" id="aiMode">
+      <div class="difficulty-selector">
+        <button class="difficulty-btn active" data-difficulty="easy">Easy</button>
+        <button class="difficulty-btn" data-difficulty="medium">Medium</button>
+        <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+      </div>
+      <div class="score">
+        <div class="score-item">You: <span id="scoreXAI">0</span></div>
+        <div class="score-item">AI: <span id="scoreOAI">0</span></div>
+        <div class="score-item">Ties: <span id="scoreTieAI">0</span></div>
+      </div>
+      <div class="status" id="statusAI">Your Turn (X)</div>
+      <div class="board" id="boardAI">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+      </div>
+      <button class="reset-btn" id="resetBtnAI">New Game</button>
+    </div>
+
+    <!-- Online Mode Section -->
+    <div class="game-section" id="onlineMode">
+      <!-- Setup View: Host or Join -->
+      <div id="onlineSetupScreen" class="online-setup">
+        <div class="setup-card host-card">
+          <h3>✨ Host a Game</h3>
+          <p>Start a new room and get a unique entry code for your friend</p>
+          <button class="action-btn host-btn" id="hostGameBtn">Host Game</button>
+        </div>
+        
+        <div class="setup-divider">
+          <span>OR</span>
+        </div>
+        
+        <div class="setup-card join-card">
+          <h3>🤝 Join a Game</h3>
+          <p>Enter your friend's 6-character room code to connect</p>
+          <div class="join-input-group">
+            <input type="text" id="roomCodeInput" placeholder="ENTER CODE" maxlength="6" autocomplete="off">
+            <button class="action-btn join-btn" id="joinGameBtn">Join Game</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lobby View: Waiting for Connection -->
+      <div id="onlineLobbyScreen" class="online-lobby" style="display: none;">
+        <div class="lobby-card">
+          <h3>Lobby Code</h3>
+          <div class="room-code-container">
+            <span id="lobbyRoomCode" class="room-code-text">------</span>
+            <button class="copy-btn" id="copyCodeBtn" title="Copy Room Code">📋 Copy</button>
+          </div>
+          <div class="waiting-indicator">
+            <div class="pulse-ring"></div>
+            <p>Waiting for a friend to join...</p>
+          </div>
+          <button class="cancel-btn" id="cancelLobbyBtn">Exit Lobby</button>
+        </div>
+      </div>
+
+      <!-- Arena View: Active Online Game -->
+      <div id="onlineGameScreen" class="online-game" style="display: none;">
+        <div class="online-header">
+          <div class="player-indicators">
+            <div class="player-indicator you-indicator" id="youIndicator">You: X</div>
+            <div class="player-indicator opponent-indicator" id="opponentIndicator">Opponent: O</div>
+          </div>
+          <div class="room-indicator">Room: <span id="gameRoomCode" class="room-code-tag">------</span></div>
+        </div>
+
+        <div class="score">
+          <div class="score-item">You: <span id="scoreYouOnline">0</span></div>
+          <div class="score-item">Opponent: <span id="scoreOpponentOnline">0</span></div>
+          <div class="score-item">Ties: <span id="scoreTieOnline">0</span></div>
+        </div>
+
+        <div class="status" id="statusOnline">Connecting...</div>
+
+        <div class="board" id="boardOnline">
+          <div class="cell" data-index="0"></div>
+          <div class="cell" data-index="1"></div>
+          <div class="cell" data-index="2"></div>
+          <div class="cell" data-index="3"></div>
+          <div class="cell" data-index="4"></div>
+          <div class="cell" data-index="5"></div>
+          <div class="cell" data-index="6"></div>
+          <div class="cell" data-index="7"></div>
+          <div class="cell" data-index="8"></div>
+        </div>
+
+        <div class="game-controls">
+          <button class="reset-btn" id="resetBtnOnline">New Game</button>
+          <button class="leave-btn" id="leaveBtnOnline">Leave Room</button>
+        </div>
+
+        <!-- Emojis Float reactions panel -->
+        <div class="emoji-bar">
+          <button class="emoji-btn" data-emoji="😂">😂</button>
+          <button class="emoji-btn" data-emoji="🔥">🔥</button>
+          <button class="emoji-btn" data-emoji="👑">👑</button>
+          <button class="emoji-btn" data-emoji="😮">😮</button>
+          <button class="emoji-btn" data-emoji="😮‍💨">😮‍💨</button>
+          <button class="emoji-btn" data-emoji="🤝">🤝</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="back-btn" id="back">Back</button>
+    <div class="footer">
+      <p>Developed by Ankit ❤️</p>
+    </div>
+ 
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
