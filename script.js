@@ -390,7 +390,7 @@ function initSocketConnection() {
   if (socketInitialized) return;
 
   const socketUrl = window.location.protocol === 'file:'
-    ? 'http://localhost:3000'
+    ? 'https://tickitonline.onrender.com'
     : window.location.origin;
 
   socket = io(socketUrl, {
