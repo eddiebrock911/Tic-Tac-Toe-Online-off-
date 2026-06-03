@@ -14,7 +14,21 @@
 
 ---
 
-## 🎲 How to Play
+# 🎮 Tic-Tac-Toe Online
+
+A modern real-time multiplayer Tic-Tac-Toe game built with **Node.js, Express, and Socket.IO**. Play online with friends using room codes or enjoy offline gameplay on a single device.
+
+---
+
+## 🚀 Live Demo
+
+**Play Now:** https://tickiton.onrender.com
+
+> Hosted on Render Free Tier. Initial startup may take a few seconds after inactivity.
+
+---
+
+## ✨ Key Features
 
 ### Online Mode
 1. Open the app and click **"Play Online"**
@@ -26,115 +40,136 @@
 1. Click **"Play Offline"**
 2. Two players share the same device
 3. Players alternate turns on the same screen
+4. No internet connection required
 
----
+### 🏆 Smart Game System
 
-## 🌐 Live Demo
+* Automatic win detection
+* Draw detection
+* Winning line highlights
+* Instant rematch functionality
 
-> **[https://tickiton.onrender.com](https://tickiton.onrender.com)**
+### 📱 Responsive Design
 
-> ⚠️ Hosted on Render's free tier — the server may take **~30 seconds to spin up** on the first visit after inactivity. Just wait a moment!
-
----
-
-## ✨ Features
-
-- 🌐 **Online Multiplayer** — Real-time 2-player matches via WebSockets (Socket.IO)
-- 🤖 **Offline Mode** — Play against an AI or a friend locally
-- ⚡ **Real-time Sync** — Moves broadcast instantly with zero page refresh
-- 📱 **Responsive UI** — Works smoothly on both desktop and mobile
-- 🎯 **Win Detection** — Automatic win/draw detection with highlights
-- 🔄 **Rematch System** — Instant rematch without reloading
+* Mobile-friendly interface
+* Desktop optimized experience
+* Clean and modern UI
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer      | Technology          |
-|------------|---------------------|
-| Runtime    | Node.js ≥ 18        |
-| Server     | Express.js 4.18     |
-| Realtime   | Socket.IO 4.7       |
-| Frontend   | Vanilla JS, CSS3, HTML5 |
-| Hosting    | Render.com          |
+| Category               | Technology              |
+| ---------------------- | ----------------------- |
+| Backend                | Node.js                 |
+| Server Framework       | Express.js              |
+| Realtime Communication | Socket.IO               |
+| Frontend               | HTML5, CSS3, JavaScript |
+| Hosting                | Render                  |
 
 ---
 
-## 🚀 Getting Started
+## 📂 Project Structure
 
-### Prerequisites
-
-Make sure you have **Node.js ≥ 18** installed:
-```bash
-node -v   # should print v18.x.x or higher
-```
-
-### Installation
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/eddiebrock911/Tic-Tac-Toe-Online-off-.git
-
-# 2. Navigate into the project
-cd Tic-Tac-Toe-Online-off-
-
-# 3. Install dependencies
-npm install
-```
-
-### Running the App
-
-```bash
-# Production
-npm start
-
-# Development (hot reload with nodemon)
-npm run dev
-```
-
-Then open your browser at → **http://localhost:3000**
-
----
-
-## 📁 Project Structure
-
-```
+```text
 Tic-Tac-Toe-Online-off-/
-├── index.html        # Game UI / Frontend
-├── style.css         # Styling & animations
-├── script.js         # Client-side game logic + Socket.IO client
-├── server.js         # Express server + Socket.IO event handlers
-├── package.json      # Project metadata & dependencies
+│
+├── index.html      # Main game interface
+├── style.css       # UI styling and animations
+├── script.js       # Client-side game logic
+├── server.js       # Express + Socket.IO server
+├── package.json    # Dependencies and scripts
 └── README.md
 ```
 
 ---
 
+## ⚙️ Installation
 
-## 🤝 Contributing
-
-Contributions are welcome! Here's how:
+### Clone the Repository
 
 ```bash
-# Fork the repo, then:
-git checkout -b feature/your-feature-name
-git commit -m "feat: add your feature"
-git push origin feature/your-feature-name
-# Open a Pull Request 🚀
+git clone https://github.com/eddiebrock911/Tic-Tac-Toe-Online-off-.git
+cd Tic-Tac-Toe-Online-off-
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Run the Application
+
+#### Production
+
+```bash
+npm start
+```
+
+#### Development
+
+```bash
+npm run dev
+```
+
+Open your browser and visit:
+
+```text
+http://localhost:3000
 ```
 
 ---
 
-## 📬 Author
+## 🎮 How to Play
 
-**Ankit** — [@eddiebrock911](https://github.com/eddiebrock911)
+### Online Mode
+
+1. Click **Play Online**
+2. Create a room
+3. Share the Room ID with a friend
+4. Start playing in real time
+
+### Offline Mode
+
+1. Click **Play Offline**
+2. Use the same device
+3. Alternate turns and enjoy the game
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome.
+
+```bash
+git checkout -b feature/new-feature
+git commit -m "Add new feature"
+git push origin feature/new-feature
+```
+
+Create a Pull Request and describe your changes.
+
+---
+
+## 👨‍💻 Author
+
+**Ankit Kumar**
+
+GitHub: https://github.com/eddiebrock911
+
+---
+
+## 📜 License
+
+This project is licensed under the ISC License.
 
 ---
 
 <div align="center">
 
-Made with ❤️ and a lot of ✕ and ○
+### ⭐ If you enjoyed this project, consider giving it a star!
 
-⭐ **Star this repo if you found it fun!**
+Built with ❤️ by Ankit Kumar
 
 </div>
