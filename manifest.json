@@ -1,0 +1,19 @@
+{
+  "name": "TICKIT — Tic Tac Toe",
+  "short_name": "TICKIT",
+  "description": "Play Tic Tac Toe locally, against AI, or online with friends.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a14",
+  "theme_color": "#1b1b36",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "image/tic-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["games", "entertainment"]
+}

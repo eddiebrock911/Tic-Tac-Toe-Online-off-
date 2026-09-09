@@ -2,46 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tic Tac Toe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="TICKIT — Play Tic Tac Toe locally, against AI, or online with friends. Ranked mode, achievements, and more.">
+  <meta name="theme-color" content="#1b1b36">
+  <meta name="author" content="Ankit Kumar">
+  <meta property="og:title" content="TICKIT | Tic Tac Toe">
+  <meta property="og:description" content="Play Tic Tac Toe locally, against AI, or online multiplayer.">
+  <meta property="og:type" content="website">
+  <title>TICKIT — Tic Tac Toe</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="image/tic-tac-image.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
   <div class="container">
-    <button class="space-btn" id="back">Spacekit Games</button>
-    <h1>Tic Tac Toe</h1>
-    
-    <div class="mode-selection">
-      <button class="mode-btn active" id="friendModeBtn">👥 Local</button>
-      <button class="mode-btn" id="aiModeBtn">🤖 vs AI</button>
-      <button class="mode-btn" id="onlineModeBtn">🌐 Online</button>
+    <header class="app-header">
+      <button class="space-btn" id="back" aria-label="Back to Spacekit Games">Spacekit Games</button>
+      <h1>TICKIT</h1>
+      <nav class="top-nav" aria-label="App navigation">
+        <button class="nav-icon-btn" id="profileBtn" aria-label="Profile" title="Profile">👤</button>
+        <button class="nav-icon-btn" id="historyBtn" aria-label="Match History" title="History">📜</button>
+        <button class="nav-icon-btn" id="leaderboardBtn" aria-label="Leaderboard" title="Leaderboard">🏆</button>
+        <button class="nav-icon-btn" id="achievementsBtn" aria-label="Achievements" title="Achievements">🎖️</button>
+        <button class="nav-icon-btn" id="settingsBtn" aria-label="Settings" title="Settings">⚙️</button>
+      </nav>
+    </header>
+
+    <div class="mode-selection" role="tablist" aria-label="Game mode">
+      <button class="mode-btn active" id="friendModeBtn" role="tab" aria-selected="true">👥 Local</button>
+      <button class="mode-btn" id="aiModeBtn" role="tab" aria-selected="false">Me vs 🤖AI</button>
+      <button class="mode-btn" id="onlineModeBtn" role="tab" aria-selected="false">🌐 Online</button>
     </div>
 
-    <!-- Friends Mode -->
-    <div class="game-section active" id="friendMode">
-      <div class="score">
+    <!-- Local Mode -->
+    <div class="game-section active" id="friendMode" role="tabpanel">
+      <div class="score" aria-label="Score">
         <div class="score-item">Player X: <span id="scoreXFriend">0</span></div>
         <div class="score-item">Player O: <span id="scoreOFriend">0</span></div>
         <div class="score-item">Ties: <span id="scoreTieFriend">0</span></div>
       </div>
-      <div class="status" id="statusFriend">Player X's Turn</div>
-      <div class="board" id="boardFriend">
-        <div class="cell" data-index="0"></div>
-        <div class="cell" data-index="1"></div>
-        <div class="cell" data-index="2"></div>
-        <div class="cell" data-index="3"></div>
-        <div class="cell" data-index="4"></div>
-        <div class="cell" data-index="5"></div>
-        <div class="cell" data-index="6"></div>
-        <div class="cell" data-index="7"></div>
-        <div class="cell" data-index="8"></div>
+      <div class="status" id="statusFriend" aria-live="polite">Player X's Turn</div>
+      <div class="board" id="boardFriend" role="grid" aria-label="Tic tac toe board">
+        <div class="cell" data-index="0"></div><div class="cell" data-index="1"></div><div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div><div class="cell" data-index="4"></div><div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div><div class="cell" data-index="7"></div><div class="cell" data-index="8"></div>
       </div>
       <button class="reset-btn" id="resetBtnFriend">New Game</button>
     </div>
 
     <!-- AI Mode -->
-    <div class="game-section" id="aiMode">
-      <div class="difficulty-selector">
+    <div class="game-section" id="aiMode" role="tabpanel">
+      <div class="difficulty-selector" role="group" aria-label="AI difficulty">
         <button class="difficulty-btn active" data-difficulty="easy">Easy</button>
         <button class="difficulty-btn" data-difficulty="medium">Medium</button>
         <button class="difficulty-btn" data-difficulty="hard">Hard</button>
@@ -51,52 +65,58 @@
         <div class="score-item">AI: <span id="scoreOAI">0</span></div>
         <div class="score-item">Ties: <span id="scoreTieAI">0</span></div>
       </div>
-      <div class="status" id="statusAI">Your Turn (X)</div>
-      <div class="board" id="boardAI">
-        <div class="cell" data-index="0"></div>
-        <div class="cell" data-index="1"></div>
-        <div class="cell" data-index="2"></div>
-        <div class="cell" data-index="3"></div>
-        <div class="cell" data-index="4"></div>
-        <div class="cell" data-index="5"></div>
-        <div class="cell" data-index="6"></div>
-        <div class="cell" data-index="7"></div>
-        <div class="cell" data-index="8"></div>
+      <div class="status" id="statusAI" aria-live="polite">Your Turn (X)</div>
+      <div class="board" id="boardAI" role="grid" aria-label="Tic tac toe board">
+        <div class="cell" data-index="0"></div><div class="cell" data-index="1"></div><div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div><div class="cell" data-index="4"></div><div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div><div class="cell" data-index="7"></div><div class="cell" data-index="8"></div>
+      </div>
+      <div id="aiAnalysisPanel" class="ai-analysis" hidden>
+        <h4>Game Analysis</h4>
+        <p id="aiAnalysisSummary"></p>
+        <details>
+          <summary>Details</summary>
+          <div class="analysis-section"><strong>Missed Wins:</strong><ul id="aiMissedWins"></ul></div>
+          <div class="analysis-section"><strong>Your Mistakes:</strong><ul id="aiPlayerMistakes"></ul></div>
+          <div class="analysis-section"><strong>AI Notes:</strong><ul id="aiAiMistakes"></ul></div>
+        </details>
+        <button class="secondary-btn" id="closeAnalysisBtn">Dismiss</button>
       </div>
       <button class="reset-btn" id="resetBtnAI">New Game</button>
     </div>
 
-    <!-- Online Mode Section -->
-    <div class="game-section" id="onlineMode">
-      <!-- Setup View: Host or Join -->
+    <!-- Online Mode -->
+    <div class="game-section" id="onlineMode" role="tabpanel">
+      <div id="connectionBanner" class="connection-banner" hidden aria-live="assertive"></div>
+
       <div id="onlineSetupScreen" class="online-setup">
+        <div class="online-type-selector">
+          <label class="mode-type-label"><input type="radio" name="onlineModeType" value="casual" checked> Casual</label>
+          <label class="mode-type-label"><input type="radio" name="onlineModeType" value="ranked"> Ranked 📊</label>
+        </div>
         <div class="setup-card host-card">
           <h3>✨ Host a Game</h3>
-          <p>Start a new room and get a unique entry code for your friend</p>
+          <p>Start a new room and share the code with a friend</p>
           <button class="action-btn host-btn" id="hostGameBtn">Host Game</button>
         </div>
-        
-        <div class="setup-divider">
-          <span>OR</span>
-        </div>
-        
+        <div class="setup-divider"><span>OR</span></div>
         <div class="setup-card join-card">
           <h3>🤝 Join a Game</h3>
-          <p>Enter your friend's 6-character room code to connect</p>
+          <p>Enter a 6-character room code</p>
           <div class="join-input-group">
-            <input type="text" id="roomCodeInput" placeholder="ENTER CODE" maxlength="6" autocomplete="off">
+            <input type="text" id="roomCodeInput" placeholder="ENTER CODE" maxlength="6" autocomplete="off" aria-label="Room code">
             <button class="action-btn join-btn" id="joinGameBtn">Join Game</button>
           </div>
         </div>
       </div>
 
-      <!-- Lobby View: Waiting for Connection -->
-      <div id="onlineLobbyScreen" class="online-lobby" style="display: none;">
+      <div id="onlineLobbyScreen" class="online-lobby" style="display:none;">
         <div class="lobby-card">
           <h3>Lobby Code</h3>
+          <span id="lobbyModeTag" class="mode-tag">Casual Match</span>
           <div class="room-code-container">
             <span id="lobbyRoomCode" class="room-code-text">------</span>
-            <button class="copy-btn" id="copyCodeBtn" title="Copy Room Code">📋 Copy</button>
+            <button class="copy-btn" id="copyCodeBtn" title="Copy Room Code" aria-label="Copy room code">📋 Copy</button>
           </div>
           <div class="waiting-indicator">
             <div class="pulse-ring"></div>
@@ -106,59 +126,179 @@
         </div>
       </div>
 
-      <!-- Arena View: Active Online Game -->
-      <div id="onlineGameScreen" class="online-game" style="display: none;">
+      <div id="onlineGameScreen" class="online-game" style="display:none;">
         <div class="online-header">
           <div class="player-indicators">
             <div class="player-indicator you-indicator" id="youIndicator">You: X</div>
             <div class="player-indicator opponent-indicator" id="opponentIndicator">Opponent: O</div>
           </div>
-          <div class="room-indicator">Room: <span id="gameRoomCode" class="room-code-tag">------</span></div>
+          <div class="room-indicator">Room: <span id="gameRoomCode" class="room-code-tag">------</span> · <span id="onlineModeTag" class="mode-tag">Casual</span></div>
         </div>
-
         <div class="score">
           <div class="score-item">You: <span id="scoreYouOnline">0</span></div>
           <div class="score-item">Opponent: <span id="scoreOpponentOnline">0</span></div>
           <div class="score-item">Ties: <span id="scoreTieOnline">0</span></div>
         </div>
-
-        <div class="status" id="statusOnline">Connecting...</div>
-
-        <div class="board" id="boardOnline">
-          <div class="cell" data-index="0"></div>
-          <div class="cell" data-index="1"></div>
-          <div class="cell" data-index="2"></div>
-          <div class="cell" data-index="3"></div>
-          <div class="cell" data-index="4"></div>
-          <div class="cell" data-index="5"></div>
-          <div class="cell" data-index="6"></div>
-          <div class="cell" data-index="7"></div>
-          <div class="cell" data-index="8"></div>
+        <div class="status" id="statusOnline" aria-live="polite">Connecting...</div>
+        <div class="board" id="boardOnline" role="grid" aria-label="Online tic tac toe board">
+          <div class="cell" data-index="0"></div><div class="cell" data-index="1"></div><div class="cell" data-index="2"></div>
+          <div class="cell" data-index="3"></div><div class="cell" data-index="4"></div><div class="cell" data-index="5"></div>
+          <div class="cell" data-index="6"></div><div class="cell" data-index="7"></div><div class="cell" data-index="8"></div>
+        </div>
+        <div id="chatBubbles" class="chat-bubbles" aria-live="polite"></div>
+        <div class="quick-chat-bar" aria-label="Quick chat">
+          <button class="quick-chat-btn" data-msg-id="maza">Maza aaya</button>
+          <button class="quick-chat-btn" data-msg-id="nice">Nice Move</button>
+          <button class="quick-chat-btn" data-msg-id="almost">Almost!</button>
+          <button class="quick-chat-btn" data-msg-id="turn">Your Turn</button>
+          <button class="quick-chat-btn" data-msg-id="fast">Fast Play</button>
+          <button class="quick-chat-btn" data-msg-id="haha">Haha</button>
         </div>
 
+        <div class="emoji-bar" aria-label="Emoji reactions">
+          <button class="emoji-btn" data-emoji="😂" aria-label="Laugh">😂</button>
+          <button class="emoji-btn" data-emoji="🔥" aria-label="Fire">🔥</button>
+          <button class="emoji-btn" data-emoji="👑" aria-label="Crown">👑</button>
+          <button class="emoji-btn" data-emoji="😮" aria-label="Surprised">😮</button>
+          <button class="emoji-btn" data-emoji="😮‍💨" aria-label="Relief">😮‍💨</button>
+          <button class="emoji-btn" data-emoji="🤝" aria-label="Handshake">🤝</button>
+        </div>
+        <br>
         <div class="game-controls">
           <button class="reset-btn" id="resetBtnOnline">New Game</button>
           <button class="leave-btn" id="leaveBtnOnline">Leave Room</button>
         </div>
 
-        <!-- Emojis Float reactions panel -->
-        <div class="emoji-bar">
-          <button class="emoji-btn" data-emoji="😂">😂</button>
-          <button class="emoji-btn" data-emoji="🔥">🔥</button>
-          <button class="emoji-btn" data-emoji="👑">👑</button>
-          <button class="emoji-btn" data-emoji="😮">😮</button>
-          <button class="emoji-btn" data-emoji="😮‍💨">😮‍💨</button>
-          <button class="emoji-btn" data-emoji="🤝">🤝</button>
-        </div>
       </div>
     </div>
 
-    <button class="back-btn" id="back">Back</button>
-    <div class="footer">
-      <p>Developed by Ankit ❤️</p>
+    <footer class="footer"><p>Developed by Ankit ❤️</p></footer>
+  </div>
+
+  <!-- Result Overlay -->
+  <div id="resultOverlay" class="result-overlay" hidden role="dialog" aria-labelledby="resultTitle">
+    <div class="result-card">
+      <h2 id="resultTitle">Game Over</h2>
+      <p id="resultSubtitle" class="result-subtitle"></p>
+      <div id="resultWinLoss" class="result-players">
+        <div><span class="result-label">Winner</span><strong id="resultWinner">—</strong></div>
+        <div><span class="result-label">Loser</span><strong id="resultLoser">—</strong></div>
+      </div>
+      <p id="resultDraw" class="result-draw" hidden>🤝 Draw</p>
+      <p id="resultSeries" class="result-series" hidden></p>
+      <div class="result-actions">
+        <button class="reset-btn" id="resultNewGame">New Game</button>
+        <button class="leave-btn" id="resultLeave" hidden>Leave</button>
+      </div>
     </div>
- 
+  </div>
+
+  <!-- Profile Modal -->
+  <div id="profileModal" class="modal" hidden role="dialog" aria-labelledby="profileModalTitle">
+    <div class="modal-content">
+      <button class="modal-close" data-close-modal="profileModal" aria-label="Close">&times;</button>
+      <h2 id="profileModalTitle">Player Profile</h2>
+      <div class="profile-display">
+        <span id="profileAvatar" class="profile-avatar">😎</span>
+        <div><strong id="profileName">Player</strong> · <span id="profileSymbol">X</span></div>
+        <div class="rank-display"><span id="profileRank">Gold</span> · <span id="profileRating">1000</span> ELO</div>
+        <div class="rank-progress"><div id="rankProgressBar" class="rank-progress-bar"></div></div>
+      </div>
+      <div class="stats-grid">
+        <div><span id="statWins">0</span><small>Wins</small></div>
+        <div><span id="statLosses">0</span><small>Losses</small></div>
+        <div><span id="statDraws">0</span><small>Draws</small></div>
+        <div><span id="statWinRate">0%</span><small>Win Rate</small></div>
+        <div><span id="statStreak">0</span><small>Streak</small></div>
+        <div><span id="statBestStreak">0</span><small>Best</small></div>
+      </div>
+      <hr>
+      <h3>Edit Profile</h3>
+      <label>Username <input type="text" id="editUsername" maxlength="20" aria-label="Username"></label>
+      <input type="hidden" id="editAvatar">
+      <div id="avatarGrid" class="avatar-grid" role="group" aria-label="Choose avatar"></div>
+      <fieldset class="symbol-picker">
+        <legend>Preferred Symbol</legend>
+        <label><input type="radio" name="prefSymbol" value="X" checked> X</label>
+        <label><input type="radio" name="prefSymbol" value="O"> O</label>
+      </fieldset>
+      <button class="reset-btn" id="saveProfileBtn">Save Profile</button>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settingsModal" class="modal" hidden role="dialog" aria-labelledby="settingsModalTitle">
+    <div class="modal-content">
+      <button class="modal-close" data-close-modal="settingsModal" aria-label="Close">&times;</button>
+      <h2 id="settingsModalTitle">Settings</h2>
+      <label>Theme
+        <select id="themeSelect" aria-label="Theme">
+          <option value="cyberpunk">Cyberpunk</option>
+          <option value="space">Space</option>
+          <option value="matrix">Matrix</option>
+          <option value="neon">Neon</option>
+          <option value="minimal">Minimal</option>
+          <option value="retro">Retro</option>
+        </select>
+      </label>
+      <label class="toggle-label"><input type="checkbox" id="soundToggle" checked> Sound</label>
+      <label class="toggle-label"><input type="checkbox" id="musicToggle"> Music</label>
+      <label class="toggle-label"><input type="checkbox" id="animToggle" checked> Animations</label>
+      <button class="reset-btn" id="saveSettingsBtn">Save Settings</button>
+      <button class="danger-btn" id="resetLocalBtn">Reset Local Data</button>
+    </div>
+  </div>
+
+  <!-- History Modal -->
+  <div id="historyModal" class="modal" hidden role="dialog" aria-labelledby="historyModalTitle">
+    <div class="modal-content">
+      <button class="modal-close" data-close-modal="historyModal" aria-label="Close">&times;</button>
+      <h2 id="historyModalTitle">Match History</h2>
+      <p id="historyEmpty" class="empty-state">No matches played yet.</p>
+      <div id="historyList" class="history-list"></div>
+      <button class="danger-btn" id="clearHistoryBtn">Clear History</button>
+    </div>
+  </div>
+
+  <!-- Leaderboard Modal -->
+  <div id="leaderboardModal" class="modal" hidden role="dialog" aria-labelledby="leaderboardModalTitle">
+    <div class="modal-content modal-wide">
+      <button class="modal-close" data-close-modal="leaderboardModal" aria-label="Close">&times;</button>
+      <h2 id="leaderboardModalTitle">Leaderboard</h2>
+      <div class="lb-filters">
+        <button class="lb-filter active" data-filter="global">Global</button>
+        <button class="lb-filter" data-filter="weekly">Weekly</button>
+        <button class="lb-filter" data-filter="monthly">Monthly</button>
+      </div>
+      <p id="leaderboardEmpty" class="empty-state" hidden>No ranked players yet.</p>
+      <div class="table-scroll">
+        <table class="leaderboard-table" aria-label="Leaderboard">
+          <thead><tr><th>Rank</th><th>Player</th><th>Rating</th><th>W</th><th>L</th><th>D</th><th>WR</th></tr></thead>
+          <tbody id="leaderboardBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Achievements Modal -->
+  <div id="achievementsModal" class="modal" hidden role="dialog" aria-labelledby="achievementsModalTitle">
+    <div class="modal-content">
+      <button class="modal-close" data-close-modal="achievementsModal" aria-label="Close">&times;</button>
+      <h2 id="achievementsModalTitle">Achievements</h2>
+      <div id="achievementsGrid" class="achievements-grid"></div>
+    </div>
+  </div>
+
   <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
-  <script src="script.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/game-local.js"></script>
+  <script src="js/game-ai.js"></script>
+  <script src="js/game-online.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
